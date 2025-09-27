@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Building2, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import logo from '../assets/logo-gicatoma.png';
 
 interface HeaderProps {
   currentPage: string;
@@ -22,18 +23,21 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <div 
-            className="flex items-center space-x-3 cursor-pointer transition-transform hover:scale-105"
+          <button
+            type="button"
             onClick={() => onNavigate('home')}
+            className="flex items-center space-x-3 cursor-pointer transition-transform hover:scale-105 focus:outline-none"
           >
-            <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-2 rounded-lg shadow-md">
-              <Building2 className="h-8 w-8 text-white" />
-            </div>
-            <div>
+            <img
+              src={logo}
+              alt="Logo GICATOMA"
+              className="h-12 w-auto object-contain"
+            />
+            <div className="text-left leading-tight">
               <h1 className="text-2xl font-bold text-gray-900 tracking-tight">GICATOMA</h1>
               <p className="text-xs text-gray-600 font-medium">Servicios Integrales</p>
             </div>
-          </div>
+          </button>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
