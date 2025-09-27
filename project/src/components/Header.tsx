@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import logo from '../assets/logo-gicatoma.png';
+import { recolorLogoToBrandBlue } from '../utils/recolorLogo';
 
 interface HeaderProps {
   currentPage: string;
@@ -9,6 +10,29 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [brandLogo, setBrandLogo] = useState(logo);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    let isMounted = true;
+
+    recolorLogoToBrandBlue(logo)
+      .then((processed) => {
+        if (isMounted && processed) {
+          setBrandLogo(processed);
+        }
+      })
+      .catch(() => {
+        /* fallback to original logo */
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const navItems = [
     { id: 'home', label: 'Inicio' },
@@ -23,21 +47,26 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <button
-            type="button"
-            onClick={() => onNavigate('home')}
-            className="flex items-center space-x-3 cursor-pointer transition-transform hover:scale-105 focus:outline-none"
+          <a
+            href="#inicio"
+            onClick={(event) => {
+              event.preventDefault();
+              onNavigate('home');
+              const homeSection = document.getElementById('inicio');
+              if (homeSection) {
+                homeSection.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                window.location.hash = 'inicio';
+              }
+            }}
+            className="flex items-center cursor-pointer transition-transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
           >
             <img
-              src={logo}
-              alt="Logo GICATOMA"
+              src={brandLogo}
+              alt="GICATOMA"
               className="h-12 w-auto object-contain"
             />
-            <div className="text-left leading-tight">
-              <h1 className="text-2xl font-bold text-gray-900 tracking-tight">GICATOMA</h1>
-              <p className="text-xs text-gray-600 font-medium">Servicios Integrales</p>
-            </div>
-          </button>
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
