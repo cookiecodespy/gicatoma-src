@@ -177,7 +177,7 @@ const Contact: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 flex items-center justify-center group shadow-lg"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center justify-center group shadow-lg"
                 >
                   <Send className="mr-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   Enviar Mensaje

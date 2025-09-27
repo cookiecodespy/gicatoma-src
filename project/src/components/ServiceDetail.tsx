@@ -142,7 +142,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack }) => {
                 </div>
               </div>
               <button
-                className={`w-full bg-gradient-to-r ${service.color} text-white py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition-all duration-300 shadow-lg`}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg"
               >
                 Solicitar Cotización
               </button>

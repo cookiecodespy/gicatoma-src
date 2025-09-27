@@ -57,21 +57,21 @@ const Hero: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
             
             {/* Content */}
-            <div className="relative h-full flex items-center">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                <div className="max-w-3xl">
+            <div className="relative h-full flex items-center justify-center px-6 sm:px-10 lg:px-16">
+              <div className="w-full max-w-7xl">
+                <div className="mx-auto max-w-3xl text-center">
                   <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-slide-up">
                     {slide.title}
                   </h1>
                   <p className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed animate-slide-up-delay">
                     {slide.subtitle}
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up-delay-2">
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up-delay-2">
                     <Link
                       to="contact"
                       smooth
                       duration={500}
-                      className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition text-center cursor-pointer"
+                      className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition text-center cursor-pointer"
                     >
                       Contáctanos
                     </Link>
@@ -79,7 +79,7 @@ const Hero: React.FC = () => {
                       to="services"
                       smooth
                       duration={500}
-                      className="border border-green-600 text-green-600 hover:bg-green-50 font-semibold px-6 py-3 rounded-lg transition text-center cursor-pointer"
+                      className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition text-center cursor-pointer"
                     >
                       Ver servicios
                     </Link>
