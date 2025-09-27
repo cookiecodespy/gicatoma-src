@@ -101,16 +101,17 @@ const About: React.FC = () => {
         {/* Values */}
         <div className="mt-20">
           <h3 className="text-3xl font-bold text-gray-900 text-center mb-12">Nuestros Valores</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => {
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {values.map((value) => {
               const IconComponent = value.icon;
               return (
-                <div key={index} className="text-center group">
-                  <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600 transition-colors duration-300">
-                    <IconComponent className="h-8 w-8 text-blue-600 group-hover:text-white transition-colors duration-300" />
-                  </div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h4>
-                  <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                <div
+                  key={value.title}
+                  className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center text-center space-y-3"
+                >
+                  <IconComponent className="h-10 w-10 text-blue-600" />
+                  <h4 className="text-lg font-semibold text-gray-800">{value.title}</h4>
+                  <p className="text-sm text-gray-600">{value.description}</p>
                 </div>
               );
             })}

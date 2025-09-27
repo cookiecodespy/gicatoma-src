@@ -57,21 +57,21 @@ const Hero: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
             
             {/* Content */}
-            <div className="relative h-full flex items-center justify-center px-6 sm:px-10 lg:px-16">
+            <div className="relative h-full flex items-center justify-center px-6 sm:px-10 lg:px-16 pb-16 sm:pb-24">
               <div className="w-full max-w-7xl">
                 <div className="mx-auto max-w-3xl text-center">
                   <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight animate-slide-up">
                     {slide.title}
                   </h1>
-                  <p className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed animate-slide-up-delay">
+                  <p className="text-xl md:text-2xl text-gray-200 leading-relaxed animate-slide-up-delay mb-6">
                     {slide.subtitle}
                   </p>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up-delay-2">
+                  <div className="mt-6 mb-12 flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up-delay-2">
                     <Link
                       to="contact"
                       smooth
                       duration={500}
-                      className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition text-center cursor-pointer"
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition text-center cursor-pointer"
                     >
                       Contáctanos
                     </Link>
@@ -79,7 +79,7 @@ const Hero: React.FC = () => {
                       to="services"
                       smooth
                       duration={500}
-                      className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition text-center cursor-pointer"
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition text-center cursor-pointer"
                     >
                       Ver servicios
                     </Link>
@@ -120,29 +120,22 @@ const Hero: React.FC = () => {
 
       {/* Key Features Bar */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-blue-900/95 to-blue-800/95 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="flex items-center space-x-4 text-white">
-              <Shield className="h-8 w-8 text-blue-300" />
-              <div>
-                <h3 className="font-semibold">Seguridad Garantizada</h3>
-                <p className="text-sm text-blue-100">Cumplimiento normativo total</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[
+              { icon: Shield, title: 'Seguridad Garantizada', description: 'Cumplimiento normativo total' },
+              { icon: Users, title: 'Equipo Especializado', description: 'Profesionales certificados' },
+              { icon: Award, title: 'Calidad Premium', description: 'Estándares internacionales' },
+            ].map(({ icon: Icon, title, description }) => (
+              <div
+                key={title}
+                className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center text-center space-y-2"
+              >
+                <Icon className="h-10 w-10 text-blue-600" />
+                <h3 className="font-semibold text-gray-800">{title}</h3>
+                <p className="text-sm text-gray-600">{description}</p>
               </div>
-            </div>
-            <div className="flex items-center space-x-4 text-white">
-              <Users className="h-8 w-8 text-blue-300" />
-              <div>
-                <h3 className="font-semibold">Equipo Especializado</h3>
-                <p className="text-sm text-blue-100">Profesionales certificados</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4 text-white">
-              <Award className="h-8 w-8 text-blue-300" />
-              <div>
-                <h3 className="font-semibold">Calidad Premium</h3>
-                <p className="text-sm text-blue-100">Estándares internacionales</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
