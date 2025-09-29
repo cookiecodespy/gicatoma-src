@@ -120,27 +120,27 @@ const Hero: React.FC = () => {
 
       {/* Key Features Bar */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-blue-900/95 to-blue-800/95/90 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center text-white">
-            <div className="flex flex-col items-center gap-3">
-              <Shield className="h-10 w-10 text-blue-200" />
-              <div>
-                <h3 className="font-semibold text-white">Seguridad Garantizada</h3>
-                <p className="text-sm text-blue-100">Cumplimiento normativo total</p>
+        <div className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 py-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center text-white">
+            <div className="flex flex-col items-center gap-2">
+              <Shield className="h-9 w-9 text-blue-200" />
+              <div className="space-y-1">
+                <h3 className="font-semibold text-white text-sm sm:text-base">Seguridad Garantizada</h3>
+                <p className="text-xs sm:text-sm text-blue-100">Cumplimiento normativo total</p>
               </div>
             </div>
-            <div className="flex flex-col items-center gap-3">
-              <Users className="h-10 w-10 text-blue-200" />
-              <div>
-                <h3 className="font-semibold text-white">Equipo Especializado</h3>
-                <p className="text-sm text-blue-100">Profesionales certificados</p>
+            <div className="flex flex-col items-center gap-2">
+              <Users className="h-9 w-9 text-blue-200" />
+              <div className="space-y-1">
+                <h3 className="font-semibold text-white text-sm sm:text-base">Equipo Especializado</h3>
+                <p className="text-xs sm:text-sm text-blue-100">Profesionales certificados</p>
               </div>
             </div>
-            <div className="flex flex-col items-center gap-3">
-              <Award className="h-10 w-10 text-blue-200" />
-              <div>
-                <h3 className="font-semibold text-white">Calidad Premium</h3>
-                <p className="text-sm text-blue-100">Estándares internacionales</p>
+            <div className="flex flex-col items-center gap-2">
+              <Award className="h-9 w-9 text-blue-200" />
+              <div className="space-y-1">
+                <h3 className="font-semibold text-white text-sm sm:text-base">Calidad Premium</h3>
+                <p className="text-xs sm:text-sm text-blue-100">Estándares internacionales</p>
               </div>
             </div>
           </div>
