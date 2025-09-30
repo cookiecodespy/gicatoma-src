@@ -1,5 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { BRAND_BLUE } from '../styles/brand';
 import type { StyledService } from '../types/services';
 import { getServiceIcon } from '../utils/serviceIcons';
 
@@ -89,13 +91,19 @@ const services: StyledService[] = [
   },
 ];
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
+};
+
+const hoverTransition = { type: 'spring', stiffness: 260, damping: 18 } as const;
 const Services: React.FC<ServicesProps> = ({ onServiceClick }) => {
   return (
     <section id="services" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
             Nuestros Servicios Profesionales
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -109,20 +117,27 @@ const Services: React.FC<ServicesProps> = ({ onServiceClick }) => {
             const IconComponent = getServiceIcon(service.icon);
 
             return (
-              <div
+              <motion.div
                 key={service.id}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 p-8 group cursor-pointer transform hover:-translate-y-2"
+                className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-50 via-white to-blue-100/60 shadow-lg p-8 transition-transform duration-250 group cursor-pointer"
                 onClick={() => onServiceClick(service)}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                whileHover={{ scale: 1.03, transition: hoverTransition }}
+                whileTap={{ scale: 0.99 }}
               >
+                <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/15 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 {/* Icon */}
                 <div
-                  className={`inline-flex p-4 rounded-xl bg-gradient-to-r ${service.color} mb-6 group-hover:scale-110 transition-transform duration-300`}
+                  className={`relative inline-flex p-4 rounded-xl bg-gradient-to-r ${service.color} mb-6 shadow-md`}
                 >
                   <IconComponent className="h-8 w-8 text-white" />
                 </div>
 
                 {/* Content */}
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4 tracking-tight">
                   {service.title}
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
@@ -140,11 +155,11 @@ const Services: React.FC<ServicesProps> = ({ onServiceClick }) => {
                 </ul>
 
                 {/* CTA */}
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-400">Ver detalles</span>
-                  <ArrowRight className="h-5 w-5 text-blue-500 group-hover:translate-x-1 transition-transform" />
+                <div className="flex items-center justify-between text-blue-600">
+                  <span className="text-sm font-medium">Ver detalles</span>
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
@@ -152,7 +167,7 @@ const Services: React.FC<ServicesProps> = ({ onServiceClick }) => {
         {/* Call to Action */}
         <div className="text-center mt-16">
           <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-12 text-white">
-            <h3 className="text-3xl font-bold mb-4">¿Necesita una solución personalizada?</h3>
+            <h3 className="text-3xl font-bold mb-4 tracking-tight">¿Necesita una solución personalizada?</h3>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
               Contacte con nuestros especialistas para una consulta gratuita y descubra cómo podemos transformar su empresa.
             </p>

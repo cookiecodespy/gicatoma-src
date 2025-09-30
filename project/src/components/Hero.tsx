@@ -120,29 +120,23 @@ const Hero: React.FC = () => {
 
       {/* Key Features Bar */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-blue-900/95 to-blue-800/95/90 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-3 sm:px-5 lg:px-6 py-3">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center text-white">
-            <div className="flex flex-col items-center gap-2">
-              <Shield className="h-9 w-9 text-blue-200" />
-              <div className="space-y-1">
-                <h3 className="font-semibold text-white text-sm sm:text-base">Seguridad Garantizada</h3>
-                <p className="text-xs sm:text-sm text-blue-100">Cumplimiento normativo total</p>
-              </div>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Users className="h-9 w-9 text-blue-200" />
-              <div className="space-y-1">
-                <h3 className="font-semibold text-white text-sm sm:text-base">Equipo Especializado</h3>
-                <p className="text-xs sm:text-sm text-blue-100">Profesionales certificados</p>
-              </div>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Award className="h-9 w-9 text-blue-200" />
-              <div className="space-y-1">
-                <h3 className="font-semibold text-white text-sm sm:text-base">Calidad Premium</h3>
-                <p className="text-xs sm:text-sm text-blue-100">Estándares internacionales</p>
-              </div>
-            </div>
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-5 py-1.5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-center text-white">
+            {
+              [
+                { icon: Shield, title: 'Seguridad Garantizada', description: 'Cumplimiento normativo total' },
+                { icon: Users, title: 'Equipo Especializado', description: 'Profesionales certificados' },
+                { icon: Award, title: 'Calidad Premium', description: 'Estándares internacionales' },
+              ].map(({ icon: Icon, title, description }) => (
+                <div key={title} className="flex flex-col items-center justify-center gap-1.5">
+                  <Icon className="h-7 w-7 text-blue-100" />
+                  <div className="space-y-0.5">
+                    <h3 className="font-semibold text-white text-sm sm:text-base tracking-wide">{title}</h3>
+                    <p className="text-xs sm:text-sm text-blue-100">{description}</p>
+                  </div>
+                </div>
+              ))
+            }
           </div>
         </div>
       </div>
