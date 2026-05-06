@@ -13,21 +13,12 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
   const [brandLogo, setBrandLogo] = useState(logo);
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
     let isMounted = true;
-
     recolorLogoToBrandBlue(logo)
       .then((processed) => {
-        if (isMounted && processed) {
-          setBrandLogo(processed);
-        }
+        if (isMounted && processed) setBrandLogo(processed);
       })
-      .catch(() => {
-        /* fallback to original logo */
-      });
+      .catch(() => undefined);
 
     return () => {
       isMounted = false;
@@ -43,41 +34,29 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
   ];
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50 transition-all duration-300">
+    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo */}
-          <a
-            href="#inicio"
-            onClick={(event) => {
-              event.preventDefault();
-              onNavigate('home');
-              const homeSection = document.getElementById('inicio');
-              if (homeSection) {
-                homeSection.scrollIntoView({ behavior: 'smooth' });
-              } else {
-                window.location.hash = 'inicio';
-              }
-            }}
-            className="flex items-center cursor-pointer transition-transform hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+        <div className="flex h-20 items-center justify-between">
+          <button
+            onClick={() => onNavigate('home')}
+            className="flex items-center gap-3 rounded-lg px-2 py-1 hover:bg-slate-50 transition-colors"
           >
-            <img
-              src={brandLogo}
-              alt="GICATOMA"
-              className="h-12 w-auto object-contain"
-            />
-          </a>
+            <img src={brandLogo} alt="GICATOMA" className="h-11 w-auto object-contain" />
+            <span className="hidden sm:block text-left">
+              <strong className="block text-slate-900 tracking-tight">GICATOMA</strong>
+              <span className="text-xs text-slate-500">Consultoría y Servicios Profesionales</span>
+            </span>
+          </button>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center gap-2">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                   currentPage === item.id
-                    ? 'bg-blue-100 text-blue-700 shadow-sm'
-                    : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-slate-700 hover:bg-slate-100'
                 }`}
               >
                 {item.label}
@@ -85,23 +64,18 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+            className="md:hidden rounded-lg p-2 hover:bg-slate-100"
+            aria-label="Abrir menú"
           >
-            {isMenuOpen ? (
-              <X className="h-6 w-6 text-gray-700" />
-            ) : (
-              <Menu className="h-6 w-6 text-gray-700" />
-            )}
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200 animate-fade-in">
-            <nav className="flex flex-col space-y-2">
+          <div className="md:hidden pb-5">
+            <nav className="space-y-2 rounded-xl border border-slate-200 bg-white p-3">
               {navItems.map((item) => (
                 <button
                   key={item.id}
@@ -109,10 +83,8 @@ const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
                     onNavigate(item.id);
                     setIsMenuOpen(false);
                   }}
-                  className={`text-left px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
-                    currentPage === item.id
-                      ? 'bg-blue-100 text-blue-700 shadow-sm'
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                  className={`block w-full rounded-lg px-4 py-3 text-left text-sm font-medium ${
+                    currentPage === item.id ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-50'
                   }`}
                 >
                   {item.label}
